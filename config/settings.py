@@ -4,9 +4,8 @@ import dj_database_url
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-ALLOWED_HOSTS = ["*"]
-SECRET_KEY = "your-secret-key"
-DEBUG = True
+SECRET_KEY = os.environ.get("SECRET_KEY", "your-default-secret-key")
+DEBUG = os.environ.get("DEBUG", "True")
 ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
