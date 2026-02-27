@@ -4,7 +4,20 @@ from apps.common.utils import rate_limit
 from .models import Lead
 from .tasks import enrich_lead
 from django.db.models import Count
+from django.shortcuts import render, redirect
 
+def index(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        if email:
+            lead = Lead.objects.create(email=email, status="pending")
+            enrich_lead.delay(str(lead.id))
+            return redirect("results")
+    return render(request, "enrichment/index.html")
+
+def results(request):
+    leads = Lead.objects.order_by("-created_at")[:20]
+    return render(request, "enrichment/results.html", {"leads": leads})
 class EnrichLeadView(APIView):
     def post(self, request):
         ip = request.META.get("REMOTE_ADDR")

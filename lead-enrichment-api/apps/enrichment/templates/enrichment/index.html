@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lead Enrichment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="p-4">
+    <div class="container">
+        <h1>Lead Enrichment</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enrich Lead</button>
+        </form>
+        <hr>
+        <a href="{% url 'results' %}" class="btn btn-secondary">View Recent Leads</a>
+    </div>
+</body>
+
+</html>
