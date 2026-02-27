@@ -4,7 +4,7 @@ import dj_database_url
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+ALLOWED_HOSTS = ["*"]
 SECRET_KEY = "your-secret-key"
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
