@@ -4,3 +4,5 @@ psycopg2-binary==2.9
 celery==5.3
 redis==5.0
 python-dotenv==1.0
+gunicorn
+dj-database-url
