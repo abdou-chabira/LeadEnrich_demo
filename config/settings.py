@@ -21,15 +21,7 @@ INSTALLED_APPS = [
 ]
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # or mysql, sqlite3, etc.
-        'NAME': os.environ.get("DB_NAME"),
-        'USER': os.environ.get("DB_USER"),
-        'PASSWORD': os.environ.get("DB_PASSWORD"),
-        'HOST': os.environ.get("DB_HOST"),
-        'PORT': os.environ.get("DB_PORT"),
-        'DATABASE_URL': os.environ.get("DATABASE_URL"),
-    }
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 TEMPLATES = [
     {
