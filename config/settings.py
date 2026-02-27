@@ -19,7 +19,20 @@ INSTALLED_APPS = [
     "apps.enrichment",
     "apps.common",
 ]
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
 
+    'django.contrib.sessions.middleware.SessionMiddleware',  # REQUIRED
+
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # REQUIRED
+
+    'django.contrib.messages.middleware.MessageMiddleware',  # REQUIRED
+
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 DATABASES = {
     "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
