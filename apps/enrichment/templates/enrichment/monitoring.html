@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>System Monitoring</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="p-4">
+    <div class="container">
+        <h1>System Monitoring</h1>
+        <div id="monitoring-data">
+            Loading system stats...
+        </div>
+        <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+    <script>
+        fetch('/api/monitoring/')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('monitoring-data').innerHTML = `
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Total Leads:</strong> ${data.total_leads}</li>
+                        <li class="list-group-item"><strong>System:</strong> ${data.system}</li>
+                        <li class="list-group-item"><strong>By Status:</strong> <pre>${JSON.stringify(data.by_status, null, 2)}</pre></li>
+                    </ul>
+                `;
+            })
+            .catch(() => {
+                document.getElementById('monitoring-data').innerHTML = '<span class="text-danger">Failed to load monitoring data.</span>';
+            });
+    </script>
+</body>
+
+</html>

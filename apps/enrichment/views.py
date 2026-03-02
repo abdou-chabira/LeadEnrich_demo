@@ -5,6 +5,7 @@ from .models import Lead
 from .tasks import enrich_lead
 from django.db.models import Count
 from django.shortcuts import render, redirect
+from django.views import View
 
 def index(request):
     if request.method == "POST":
@@ -18,6 +19,7 @@ def index(request):
 def results(request):
     leads = Lead.objects.order_by("-created_at")[:20]
     return render(request, "enrichment/results.html", {"leads": leads})
+
 class EnrichLeadView(APIView):
     def post(self, request):
         ip = request.META.get("REMOTE_ADDR")
@@ -43,3 +45,7 @@ class MonitoringView(APIView):
         stats = Lead.objects.values("status").annotate(count=Count("id"))
         total = Lead.objects.count()
         return Response({"total_leads": total, "by_status": stats, "system": "healthy"})
+
+class MonitoringUI(View):
+    def get(self, request):
+        return render(request, "enrichment/monitoring.html")
