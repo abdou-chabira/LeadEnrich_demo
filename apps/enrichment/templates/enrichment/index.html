@@ -40,7 +40,10 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h1>Lead Enrichment</h1>
-            <button id="themeToggle" class="btn btn-outline-dark">Toggle Dark Theme</button>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="themeSwitch">
+                <label class="form-check-label" for="themeSwitch" id="themeSwitchLabel">Dark Theme</label>
+            </div>
         </div>
         <form method="post">
             {% csrf_token %}
@@ -55,18 +58,15 @@
         <a href="{% url 'monitoring' %}" class="btn btn-info ms-2">System Monitoring</a>
     </div>
     <script>
-        const toggleBtn = document.getElementById('themeToggle');
+        const themeSwitch = document.getElementById('themeSwitch');
         const body = document.getElementById('mainBody');
-        toggleBtn.addEventListener('click', function () {
+        const label = document.getElementById('themeSwitchLabel');
+        themeSwitch.addEventListener('change', function () {
             body.classList.toggle('dark-theme');
             if (body.classList.contains('dark-theme')) {
-                toggleBtn.classList.remove('btn-outline-dark');
-                toggleBtn.classList.add('btn-outline-light');
-                toggleBtn.textContent = 'Toggle Light Theme';
+                label.textContent = 'Light Theme';
             } else {
-                toggleBtn.classList.remove('btn-outline-light');
-                toggleBtn.classList.add('btn-outline-dark');
-                toggleBtn.textContent = 'Toggle Dark Theme';
+                label.textContent = 'Dark Theme';
             }
         });
     </script>
