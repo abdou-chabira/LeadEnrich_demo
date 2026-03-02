@@ -5,3 +5,4 @@ djangorestframework
 django-environ
 redis
 dj-database-url
+psycopg2-binary
