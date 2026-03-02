@@ -1,8 +1,6 @@
-Django==4.2
-djangorestframework==3.15
-psycopg[binary]>=3.1
-celery==5.3
-redis==5.0
-python-dotenv==1.0
-gunicorn==21.2.0
-dj-database-url
+Django>=4.2
+celery[redis]>=5.3
+gunicorn>=21.2
+djangorestframework
+django-environ
+redis
